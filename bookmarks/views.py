@@ -32,21 +32,19 @@ def user_logout(request):
     return HttpResponseRedirect('/bookmarks/')
 
 
-
-
 def index(request): 
 	context = RequestContext(request)
 	list_order = List.objects.order_by('name')
 	context_dict = {'lists': list_order}
 
 	for lists in list_order:
-		lists.url = lists.name #.replace(' ', '_')
+		lists.url = lists.name 
 
 	return render_to_response('bookmarks/index.html', context_dict, context)
 
 def list(request, list_name_url):
 	context = RequestContext(request)
-	list_name = list_name_url #.replace('_',' ')
+	list_name = list_name_url 
 	context_dict = {'list_name': list_name, 'list_name_url':list_name_url}
 
 	try:
@@ -59,6 +57,7 @@ def list(request, list_name_url):
 
 	return render_to_response('bookmarks/list.html', context_dict, context)
 
+@login_required
 def add_list(request):
     context = RequestContext(request)
     if request.method == 'POST':
@@ -72,6 +71,8 @@ def add_list(request):
         form = ListForm()
     return render_to_response('bookmarks/add_list.html', {'form': form}, context)
 
+
+@login_required
 def add_link(request, list_name_url):
     context = RequestContext(request)
     list_name = decode_url(list_name_url)
@@ -145,18 +146,16 @@ def user_login(request):
 def delete_link(request, link_id):
     link_to_delete = get_object_or_404(Link, id=link_id)
     context = RequestContext(request)
-    #context_dict = {'link_id': link_id}
-
-    #if request.method == 'POST':
-        #form = DeleteForm(request.POST, instance=link_to_delete)
-
-        #if form.is_valid():
     link_to_delete.delete()
     return HttpResponseRedirect('/bookmarks/')
-    #else:
-     #   form = DeleteForm(instance = link_to_delete)
-   # template_vars = {'form': form}
-   # return render_to_response(request, 'bookmarks/delete_link.html', template_vars)
+
+@login_required
+def delete_list(request, list_id):
+    list_to_delete = get_object_or_404(List, id=list_id)
+    context = RequestContext(request)
+    list_to_delete.delete()
+    return HttpResponseRedirect('/bookmarks')
+
 
 
 

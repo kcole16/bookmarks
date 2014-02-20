@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>{% block title %}Bookmarks{% endblock %}</title>
+    </head>
+
+    <body>
+        <div>
+            {% block body_block %}{% endblock %}
+        </div>
+
+        <hr />
+
+        <div>
+            <ul>
+            {% if user.is_authenticated %}
+                <a href="/bookmarks/logout/">Logout</a></br>
+                <a href="/bookmarks/add_list/">Create a New List</a></br>
+            {% else %}
+                <a href="/bookmarks/register/">Register</a></br>
+                <a href="/bookmarks/login/">Login</a></br>
+            {% endif %}
+
+                <a href="/bookmarks/">Go to Lists</a>
+            </ul>
+        </div>
+    </body>
+</html>
+

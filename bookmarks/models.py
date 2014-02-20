@@ -5,7 +5,6 @@ class List(models.Model):
     name = models.CharField(max_length = 50)
     date_created = models.DateTimeField(auto_now_add = True)
     date_modified = models.DateTimeField(auto_now = True)
-    #links = models.ManyToManyField('Link', blank = True)
 
 
 class Link(models.Model):

@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Bookmarks</title>
-    </head>
+{% extends 'bookmarks/base.html' %}
 
-    <body>
+{% block title %}{{ list_name }}{% endblock %}
+
+{% block body_block %}
         <h1>Login</h1>
 
         <form id="login_form" method="post" action="/bookmarks/login/">
@@ -21,5 +19,4 @@
             <a href='/bookmarks/'>Back</a>
         </form>
 
-    </body>
-</html>
+{% endblock %}

@@ -1,30 +1,24 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Bookmarks</title>
-    </head>
+{% extends 'bookmarks/base.html' %}
 
-    <body>
+{% block title %}{{ list_name }}{% endblock %}
+
+{% block body_block %}
+    <div class="hero-unit">
         <h1>Lists</h1>
 
         {% if lists %}
-            <ul>
+                <h3>Name</h3>
                 {% for list in lists %}
-                <li><a href="/bookmarks/list/{{ list.url }}">{{ list.name }}</a></li>
+                <ul>
+                    <li><a href="/bookmarks/list/{{ list.url }}">{{ list.name }}</a></li>
+                   <!-- <td><a href='/bookmarks/delete_list/{{ list.pk }}/'> Delete</a></td> -->
+                </ul>
+
                 {% endfor %}
-            </ul>
+
         {% else %}
             <strong>There are no lists present.</strong>
         {% endif %}
+    </div>
 
-        {% if user.is_authenticated %}
-        <a href="/bookmarks/restricted/">Restricted Page</a><br />
-        <a href="/bookmarks/logout/">Logout</a><br />
-        {% else %}
-        <a href="/bookmarks/register/">Register Here</a><br />
-        <a href="/bookmarks/login/">Login</a><br />
-        {% endif %}
-        <a href="/bookmarks/add_list/">Add a New List</a><br />
-
-    </body>
-</html>
+{% endblock %}

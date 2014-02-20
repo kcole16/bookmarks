@@ -1,36 +1,45 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Links</title>
-    </head>
+{% extends 'bookmarks/base.html' %}
 
-    <body>
+{% block title %}{{ list_name }}{% endblock %}
+
+{% block body_block %}
         <h1>{{ list_name }}</h1>
-
-
-
         {% if lists %}
             {% if links %}
-            <ul>
+            <table style="width:300px">
+                <style>
+                 tr, table
+                {
+                    border:1px solid black;
+                }
+                </style>
+              
+                <tr>
+                    <th>Name</th>
+                    <th>Tags</th>
+                    <th>Date Created</th>
+                </tr>
                 {% for link in links %}
-                <li><a href="{{ link.link }}">{{ link.name }}</a><a href='/bookmarks/delete_link/{{ link.pk }}/'> Delete</a> </li>
+                <tr>
+                    <td style="border:1px solid black"><a href="{{ link.link }}">{{ link.name }}</a></td>
+                    <td style="border:1px solid black">{{ link.tags }}</td>
+                    <td style="border:1px solid black">{{ link.date_created }}</td>
+                    {% if user.is_authenticated %}
+                    <td><a href='/bookmarks/delete_link/{{ link.pk }}/'> Delete</a></td>
+                    {% endif %}
+                </tr>
 
                 {% endfor %}
-            </ul>
+            </table>
+ 
             {% else %}
                 <strong>No links currently in list.</strong>
             {% endif %}
         {% else %}
             The specified list {{ list_name }} does not exist!
         {% endif %}
-
-    
-
-
+        <br>
         <a href="/bookmarks/list/{{ list_name_url }}/add_link/">Add a New Link</a>
+        </br>
+{% endblock %}
 
-        <a href="/bookmarks/">Back to Lists</a
-        >
-
-    </body>
-</html>

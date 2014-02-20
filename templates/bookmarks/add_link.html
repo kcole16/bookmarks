@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Bookmark</title>
-    </head>
+{% extends 'bookmarks/base.html' %}
 
-    <body>
+{% block title %}{{ list_name }}{% endblock %}
+
+{% block body_block %}
         <h1>Add a Link</h1>
 
    
@@ -24,7 +22,4 @@
                 <input type="submit" name="submit" value="Create Link" />
             </form>
       
-
-    </body>
-
-</html>
+{% endblock %}

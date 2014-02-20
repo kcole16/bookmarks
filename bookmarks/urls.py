@@ -9,9 +9,9 @@ urlpatterns = patterns('',
 	url(r'^list/(?P<list_name_url>\w+)/add_link/$', views.add_link, name='add_link'),
 	url(r'^register/$', views.register, name='register'),
 	url(r'^login/$', views.user_login, name='login'),
-	#url(r'^delete_link/(?P<link_to_delete>[0-9]+)/$', views.delete_link, name='delete_link')
 	url(r'^delete_link/(?P<link_id>\w+)/$', views.delete_link, name='delete_link'),
 	url(r'^restricted/', views.restricted, name='restricted'),
 	url(r'^logout/$', views.user_logout, name='logout'),
+	url(r'^delete_list/(?P<list_id>\w+)/$', views.delete_list, name='delete_list'),
 	)
 
