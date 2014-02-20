@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bookmark</title>
+    </head>
+
+    <body>
+        <h1>Add a Link</h1>
+
+   
+            <form id="link_form" method="post" action="/bookmarks/list/{{ list_name_url }}/add_link/">
+
+                {% csrf_token %}
+                {% for hidden in form.hidden_fields %}
+                    {{ hidden }}
+                {% endfor %}
+
+                {% for field in form.visible_fields %}
+                    {{ field.errors }}
+                    {{ field.help_text}}
+                    {{ field }}
+                {% endfor %}
+
+                <input type="submit" name="submit" value="Create Link" />
+            </form>
+      
+
+    </body>
+
+</html>

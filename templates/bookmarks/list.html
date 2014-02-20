@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Links</title>
+    </head>
+
+    <body>
+        <h1>{{ list_name }}</h1>
+        {% if lists %}
+            {% if links %}
+            <ul>
+                {% for link in links %}
+                <li><a href="{{ link.link }}">{{ link.name }}</a><a href='/bookmarks/list/{{ link.pk }}/delete_link/'> Delete</a> </li>
+
+                {% endfor %}
+            </ul>
+            {% else %}
+                <strong>No links currently in list.</strong>
+            {% endif %}
+        {% else %}
+            The specified list {{ list_name }} does not exist!
+        {% endif %}
+
+
+        <a href="/bookmarks/list/{{ list_name_url }}/add_link/">Add a New Link</a>
+
+        <a href="/bookmarks/">Back to Lists</a
+        >
+
+    </body>
+</html>

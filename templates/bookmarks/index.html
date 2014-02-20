@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Bookmarks</title>
+    </head>
+
+    <body>
+        <h1>Lists</h1>
+
+        {% if lists %}
+            <ul>
+                {% for list in lists %}
+                <li><a href="/bookmarks/list/{{ list.url }}">{{ list.name }}</a></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <strong>There are no lists present.</strong>
+        {% endif %}
+
+     <a href="/bookmarks/add_list/">Add a New List</a>
+     <br />
+     <a href="/bookmarks/register/">Register Here</a>
+     <br />
+     <a href="/bookmarks/login/">Login</a>
+
+    </body>
+</html>
