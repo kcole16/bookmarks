@@ -31,6 +31,8 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
+LOGIN_URL = '/bookmarks/login/'
+
 
 # Application definition
 
@@ -42,7 +44,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bookmarks',
-    'object_admin',
 )
 
 MIDDLEWARE_CLASSES = (

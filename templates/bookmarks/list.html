@@ -6,6 +6,9 @@
 
     <body>
         <h1>{{ list_name }}</h1>
+
+
+
         {% if lists %}
             {% if links %}
             <ul>
@@ -20,6 +23,8 @@
         {% else %}
             The specified list {{ list_name }} does not exist!
         {% endif %}
+
+    
 
 
         <a href="/bookmarks/list/{{ list_name_url }}/add_link/">Add a New Link</a>

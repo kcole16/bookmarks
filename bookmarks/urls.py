@@ -11,5 +11,7 @@ urlpatterns = patterns('',
 	url(r'^login/$', views.user_login, name='login'),
 	#url(r'^delete_link/(?P<link_to_delete>[0-9]+)/$', views.delete_link, name='delete_link')
 	url(r'^delete_link/(?P<link_id>\w+)/$', views.delete_link, name='delete_link'),
+	url(r'^restricted/', views.restricted, name='restricted'),
+	url(r'^logout/$', views.user_logout, name='logout'),
 	)
 

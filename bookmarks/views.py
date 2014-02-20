@@ -12,6 +12,8 @@ from django.contrib.auth import authenticate, login
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import get_object_or_404
 from django.core.urlresolvers import reverse
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
 
 
 def encode_url(str):
@@ -19,6 +21,17 @@ def encode_url(str):
 
 def decode_url(str):
     return str.replace('_', ' ')
+
+@login_required
+def restricted(request):
+    return HttpResponse("You can see this file if logged in")
+
+@login_required
+def user_logout(request):
+    logout(request)
+    return HttpResponseRedirect('/bookmarks/')
+
+
 
 
 def index(request): 
@@ -130,12 +143,12 @@ def user_login(request):
 
 def delete_link(request, link_id):
     link_to_delete = get_object_or_404(Link, id=link_id)
-    context_dict = {'link+id': link_id}
+    context_dict = {'link_id': link_id}
 
     if request.method == 'POST':
-        form = DeleteForm(request.POST, instance=link_to_delete)
+        #form = DeleteForm(request.POST, instance=link_to_delete)
 
-        if form.is_valid():
+        #if form.is_valid():
             link_to_delete.delete()
             return HttpResponseRedirect('bookmarks/list')
     else:

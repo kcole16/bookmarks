@@ -17,11 +17,14 @@
             <strong>There are no lists present.</strong>
         {% endif %}
 
-     <a href="/bookmarks/add_list/">Add a New List</a>
-     <br />
-     <a href="/bookmarks/register/">Register Here</a>
-     <br />
-     <a href="/bookmarks/login/">Login</a>
+        {% if user.is_authenticated %}
+        <a href="/bookmarks/restricted/">Restricted Page</a><br />
+        <a href="/bookmarks/logout/">Logout</a><br />
+        {% else %}
+        <a href="/bookmarks/register/">Register Here</a><br />
+        <a href="/bookmarks/login/">Login</a><br />
+        {% endif %}
+        <a href="/bookmarks/add_list/">Add a New List</a><br />
 
     </body>
 </html>
