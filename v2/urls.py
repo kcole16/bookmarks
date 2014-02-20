@@ -10,5 +10,6 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^bookmarks/', include('bookmarks.urls')),
+    url(r'^', include('bookmarks.urls'))
 
 )

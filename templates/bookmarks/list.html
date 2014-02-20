@@ -13,7 +13,7 @@
             {% if links %}
             <ul>
                 {% for link in links %}
-                <li><a href="{{ link.link }}">{{ link.name }}</a><a href='/bookmarks/list/{{ link.pk }}/delete_link/'> Delete</a> </li>
+                <li><a href="{{ link.link }}">{{ link.name }}</a><a href='/bookmarks/delete_link/{{ link.pk }}/'> Delete</a> </li>
 
                 {% endfor %}
             </ul>

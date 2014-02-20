@@ -141,20 +141,22 @@ def user_login(request):
     else:
         return render_to_response('bookmarks/login.html', {}, context)
 
+@login_required
 def delete_link(request, link_id):
     link_to_delete = get_object_or_404(Link, id=link_id)
-    context_dict = {'link_id': link_id}
+    context = RequestContext(request)
+    #context_dict = {'link_id': link_id}
 
-    if request.method == 'POST':
+    #if request.method == 'POST':
         #form = DeleteForm(request.POST, instance=link_to_delete)
 
         #if form.is_valid():
-            link_to_delete.delete()
-            return HttpResponseRedirect('bookmarks/list')
-    else:
-        form = DeleteForm(instance = link_to_delete)
-    template_vars = {'form': form}
-    return render_to_response(request, 'bookmarks/delete_link.html', template_vars)
+    link_to_delete.delete()
+    return HttpResponseRedirect('/bookmarks/')
+    #else:
+     #   form = DeleteForm(instance = link_to_delete)
+   # template_vars = {'form': form}
+   # return render_to_response(request, 'bookmarks/delete_link.html', template_vars)
 
 
 
