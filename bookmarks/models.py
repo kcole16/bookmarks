@@ -21,6 +21,8 @@ class User(models.Model):
 	verified = models.BooleanField(default = False)
 	approval_date = models.DateTimeField(null = True, blank = True)
 
+
+
 	
 
 

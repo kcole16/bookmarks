@@ -9,9 +9,9 @@ class ListForm(forms.ModelForm):
 			model = List
 
 class LinkForm(forms.ModelForm):
-	name = forms.CharField(max_length = 50, help_text="Name:")
-	link = forms.URLField(max_length=200, help_text="URL:")
-	tags = forms.CharField(help_text = "Tags:")
+	name = forms.CharField(max_length = 50, help_text="Name")
+	link = forms.URLField(max_length=200, help_text="URL")
+	tags = forms.CharField(help_text = "Tags")
 
 	class Meta:
 		model = Link

@@ -3,20 +3,44 @@
 {% block title %}{{ list_name }}{% endblock %}
 
 {% block body_block %}
-        <h1>Login</h1>
 
-        <form id="login_form" method="post" action="/bookmarks/login/">
-            {% csrf_token %}
-            Username: <input type="text" name="username" value="" size="50" />
-            <br />
-            Password: <input type="password" name="password" value="" size="50" />
-            <br />
+<style>
+body {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #ddd;
+}
 
-            <input type="submit" value="submit" />
+.container {
+  width:300px;
+  height:350px;
+  margin:0 auto;
+  position:relative;
+  
+}
+</style>
+
+<div class="container">
+    <form class="form-signin" id="login_form" method="post" action="/bookmarks/login/">
+    <h2 class="form-signin-heading">Please sign in</h2>
+    {% csrf_token %}
+        <input type="text" class="form-control" placeholder="Email address" name="username" value="" size="50"  />
+        <input type="password" class="form-control" placeholder="Password" name="password" value="" size="50"  />
+        <label class="checkbox">
+        <input type="checkbox"> Remember Me
+        </label>
+        <button class="btn btn-block btn-primary" type="submit" >Sign in</button>
+    </form>
+</div>
+
+
+
+           <!-- <input type="submit" value="submit" />
             {% if registered == False %}
             <a href="/bookmarks/register/">Register</a>
             {% endif %}
             <a href='/bookmarks/'>Back</a>
         </form>
 
+        //-->
 {% endblock %}
