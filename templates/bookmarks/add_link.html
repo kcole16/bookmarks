@@ -14,25 +14,32 @@
                     {{ hidden }}
                 {% endfor %}
 
-                {% for field in form.visible_fields %}
                 <div class="control-group">
-                    <label class="control-label" for={{ field }} {{ field.help_text }}</label>
+                    <label class="control-label" for="id_name"> Name</label>
                     <div class="controls">
-                        {% if field.help_text == "Tags" %}
-                            <textarea class = "form-control" rows= "3" id={{ field }} </textarea>
-                        {% else %}
-                        <input class ="form-control" type="text"  id={{ field}} 
-                        {% endif %}
+                        <input class ="form-control" type="text" placeholder = "Enter name" name="name"  id="id_name"/> 
                     </div>
                 </div>
-                {% endfor %}
+                <div class="control-group">
+                    <label class="control-label" for="id_link"> URL</label>
+                    <div class="controls">
+                        <input class ="form-control" type="url" placeholder = "URL" name="link"   id="id_link"/> 
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="id_tags"> Tags</label>
+                    <div class="controls">
+                        <textarea class = "form-control" rows= "3" id="id_tags" name="tags" > </textarea> 
+                    </div>
+                </div>
 
 
 
 
                 <br/>
-                <button class="btn btn-primary" type="submit" name="submit">Add Link</button>
+                <button class="btn btn-primary" type="submit" name="submit">Create Link</button>
             </form>
         </div>
+</div>
       
 {% endblock %}

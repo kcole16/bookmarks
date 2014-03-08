@@ -33,14 +33,18 @@ def user_logout(request):
 
 
 def index(request): 
-	context = RequestContext(request)
-	list_order = List.objects.order_by('name')
-	context_dict = {'lists': list_order}
+    context = RequestContext(request)
+    list_order = List.objects.order_by('name')
+    context_dict = {'lists': list_order}
+    
+    for lists in list_order:
+        lists.url = lists.name
+        list_name = lists.name
+        links = Link.objects.filter(name=list_name)
 
-	for lists in list_order:
-		lists.url = lists.name 
+    context_dict['links'] = links
 
-	return render_to_response('bookmarks/index.html', context_dict, context)
+    return render_to_response('bookmarks/index.html', context_dict, context)
 
 def list(request, list_name_url):
 	context = RequestContext(request)

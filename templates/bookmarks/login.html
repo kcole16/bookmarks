@@ -11,16 +11,21 @@ body {
   background-color: #ddd;
 }
 
-.container {
+.container-login {
   width:300px;
   height:350px;
   margin:0 auto;
   position:relative;
   
 }
+
+.checkbox {
+    font-weight: normal;
+
+}
 </style>
 
-<div class="container">
+<div class="container-login">
     <form class="form-signin" id="login_form" method="post" action="/bookmarks/login/">
     <h2 class="form-signin-heading">Please sign in</h2>
     {% csrf_token %}

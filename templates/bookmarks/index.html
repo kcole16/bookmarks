@@ -9,10 +9,51 @@
         {% if lists %}
                 <h3>Name</h3>
                 {% for list in lists %}
-                <ul>
-                    <li><a href="/bookmarks/list/{{ list.url }}">{{ list.name }}</a></li>
-                  <!--- <td><a href='/bookmarks/delete_list/{{ list.pk }}/'> Delete</a></td> -->
-                </ul>
+                <div class="panel-group" id="accordion">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                    {{ list.name }}
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                            {% if links %}
+                                <table style="width:300px">
+                                <style>
+                                tr, table
+                                {
+                                    border:1px solid black;
+                                }
+                                </style>
+              
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Tags</th>
+                                    <th>Date Created</th>
+                                </tr>
+                                {% for link in links %}
+                                <tr>
+                                     <td style="border:1px solid black"><a href="{{ link.link }}">{{ link.name }}</a></td>
+                                     <td style="border:1px solid black">{{ link.tags }}</td>
+                                     <td style="border:1px solid black">{{ link.date_created }}</td>
+                                     {% if user.is_authenticated %}
+                                     <td><a href='/bookmarks/delete_link/{{ link.pk }}/'> Delete</a></td>
+                                     {% endif %}
+                                </tr>
+
+                                {% endfor %}
+                                </table>
+                            {% else %}
+                            <strong>No links currently in list.</strong>
+                            {% endif %}
+                            </div>
+                        </div>
+                </div>
+
+       
 
                 {% endfor %}
 
