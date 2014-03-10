@@ -1,19 +1,13 @@
 from django.http import HttpResponse
 from django.template import RequestContext
 from django.shortcuts import render_to_response
-from bookmarks.models import List
-from bookmarks.models import Link
-from bookmarks.models import User
-from bookmarks.forms import ListForm
-from bookmarks.forms import LinkForm
-from bookmarks.forms import UserForm
-from bookmarks.forms import DeleteForm
-from django.contrib.auth import authenticate, login
+from bookmarks.models import List, Link, User
+from bookmarks.forms import ListForm, LinkForm, UserForm, DeleteForm
+from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import get_object_or_404
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth import logout
 
 
 def encode_url(str):
@@ -39,8 +33,10 @@ def index(request):
     
     for lists in list_order:
         lists.url = lists.name
-        list_name = lists.name
-        links = Link.objects.filter(name=list_name)
+        name = lists.name
+    
+    list_to_get = List.objects.get(name=name)
+    links = Link.objects.filter(lists=list_to_get)
 
     context_dict['links'] = links
 

@@ -1,27 +1,29 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Bookmarks</title>
-    </head>
+{% extends 'bookmarks/base.html' %}
 
-    <body>
+{% block title %}{{ list_name }}{% endblock %}
+
+{% block body_block %}
+<div class="hero-unit">
         <h1>Create User</h1>
 
         {% if registered %}
         <strong>Thank you for registering!</strong>
         <a href="/bookmarks/">Return to the homepage.</a><br />
         {% else %}
-        <strong>Register here</strong><br />
 
-        <form id="user_form" method="post" action="/bookmarks/register/"
+
+        <div class="container">
+
+            <form class="form-signin" id="user_form" method="post" action="/bookmarks/register/"
                 enctype="multipart/form-data">
 
-            {% csrf_token %}
-            {{ user_form.as_p }}
-            {{ profile_form.as_p }}
+                {% csrf_token %}
+                {{ user_form.as_p }}
+                {{ profile_form.as_p }}
 
-            <input type="submit" name="submit" value="Register" />
-        </form>
+                <button class="btn btn-large btn-primary" type="submit" >Register</button>
+            </form>
+        </div>
         {% endif %}
-    </body>
-</html>
+
+{% endblock %}

@@ -44,7 +44,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bookmarks',
-    'bootstrap3'
+    #'bootstrap3'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -87,6 +87,19 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+#    'django.contrib.staticfiles.finders.DefaultStorageFinder',
+)
+
+STATIC_PATH = os.path.join(PROJECT_PATH, 'static')
+
+STATICFILES_DIRS = (
+
+    os.path.join(PROJECT_PATH, 'static'),
+)
 
 STATIC_URL = '/static/'
 

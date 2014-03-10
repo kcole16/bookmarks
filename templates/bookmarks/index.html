@@ -4,6 +4,18 @@
 
 {% block body_block %}
         <h1>Lists</h1>
+        <style>
+        tr, table
+        {
+            border:1px solid black;
+        } 
+        {
+            background-color:orange;
+            border-color:white;
+            outline-color: white;
+        
+        }
+        </style>
 
         {% if lists %}
                 <h3>Name</h3>
@@ -12,38 +24,30 @@
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ list.name}}">
                                     {{ list.name }}
                                 </a>
                             </h4>
                         </div>
-                        <div id="collapseOne" class="panel-collapse collapse in">
+                        <div id="collapse{{ list.name }}" class="panel-collapse collapse in">
                             <div class="panel-body">
                             {% if links %}
                                 <table style="width:300px">
-                                <style>
-                                tr, table
-                                {
-                                    border:1px solid black;
-                                }
-                                </style>
-              
                                 <tr>
                                     <th>Name</th>
-                                    <th>Tags</th>
-                                    <th>Date Created</th>
                                 </tr>
                                 {% for link in links %}
                                 <tr>
-                                     <td style="border:1px solid black"><a href="{{ link.link }}">{{ link.name }}</a></td>
-                                     <td style="border:1px solid black">{{ link.tags }}</td>
-                                     <td style="border:1px solid black">{{ link.date_created }}</td>
+                                     <td style="border:1px solid black"><a href="{{ link.pk }}">{{ link.name }}</a></td>
                                      {% if user.is_authenticated %}
                                      <td><a href='/bookmarks/delete_link/{{ link.pk }}/'> Delete</a></td>
                                      {% endif %}
                                 </tr>
 
                                 {% endfor %}
+                                <tr>
+                                    <td><a href="/bookmarks/list/{{ list.name }}/add_link/">Add a New Link</a></td>
+                                </tr>
                                 </table>
                             {% else %}
                             <strong>No links currently in list.</strong>
