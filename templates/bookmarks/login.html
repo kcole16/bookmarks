@@ -3,6 +3,7 @@
 {% block title %}{{ list_name }}{% endblock %}
 
 {% block body_block %}
+
 <style>
 body {
   padding-top: 40px;
@@ -19,22 +20,23 @@ body {
 }
 
 .checkbox {
-    font-weight: normal;
+  font-weight: normal;
 
 }
 </style>
 
+
 <div class="container-login">
-    <form class="form-signin" id="login_form" method="post" action="/bookmarks/login/">
+  <form class="form-signin" id="login_form" method="post" action="/bookmarks/login/">
     <h2 class="form-signin-heading">Please sign in</h2>
     {% csrf_token %}
-        <input type="text" class="form-control" placeholder="Email address" name="username" value="" size="50"  />
-        <input type="password" class="form-control" placeholder="Password" name="password" value="" size="50"  />
-        <label class="checkbox">
-        <input type="checkbox"> Remember Me
-        </label>
-        <button class="btn btn-block btn-primary" type="submit" >Sign in</button>
-    </form>
+    <input type="text" class="form-control" placeholder="Email address" name="username" value="" size="50"  />
+    <input type="password" class="form-control" placeholder="Password" name="password" value="" size="50"  />
+    <label class="checkbox">
+      <input type="checkbox"> Remember Me
+    </label>
+    <button class="btn btn-block btn-primary" type="submit" >Sign in</button>
+  </form>
 </div>
 
 
@@ -47,4 +49,4 @@ body {
         </form>
 
         //-->
-{% endblock %}
+        {% endblock %}

@@ -32,7 +32,7 @@ def index(request):
     context_dict = {'lists': list_order}
     
     for lists in list_order:
-        lists.url = lists.name
+      #  lists.url = lists.name
         name = lists.name
     
     list_to_get = List.objects.get(name=name)

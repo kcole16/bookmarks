@@ -4,28 +4,26 @@
 
 {% block body_block %}
 <div class="hero-unit">
-        <h1>Add a List</h1>
-        <br/>
-        <div class="container">
-            <form class ="form-horizontal" id="list_form" method="post" action="/bookmarks/add_list/">
+    <div class="container">
+        <form class ="form-horizontal" id="list_form" method="post" action="/bookmarks/add_list/"><legend style="font-size:35px;font-family:arial;"> Add a List </legend>
 
-                {% csrf_token %}
-                {% for hidden in form.hidden_fields %}
-                    {{ hidden }}
-                {% endfor %}
+            {% csrf_token %}
+            {% for hidden in form.hidden_fields %}
+            {{ hidden }}
+            {% endfor %}
 
-                <div class="control-group">
-                    <label class="control-label" for="id_name"> Name</label>
-                    <div class="controls">
-                        <input class ="form-control" type="text" placeholder = "Enter name" name="name"  id="id_name"/> 
-                    </div>
+            <div class="control-group">
+                <label class="control-label" for="id_name"> Name</label>
+                <div class="controls">
+                    <input class ="form-control" type="text" placeholder = "Enter name" name="name"  id="id_name"/> 
                 </div>
+            </div>
 
-                <br/>
-                <button class="btn btn-primary" type="submit" name="submit">Create List</button>
-            </form>
-        </div>
+            <br/>
+            <button class="btn btn-primary" type="submit" name="submit">Create List</button>
+        </form>
+    </div>
 </div>
-      
+
 
 {% endblock %}

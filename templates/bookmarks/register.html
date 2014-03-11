@@ -4,26 +4,26 @@
 
 {% block body_block %}
 <div class="hero-unit">
-        <h1>Create User</h1>
+    <legend style="font-size:35px;font-family:arial;margin-left:50px;"> Create User </legend>
+    {% if registered %}
+    <strong>Thank you for registering!</strong>
+    <a href="/bookmarks/">Return to the homepage.</a><br />
+    {% else %}
 
-        {% if registered %}
-        <strong>Thank you for registering!</strong>
-        <a href="/bookmarks/">Return to the homepage.</a><br />
-        {% else %}
 
+    <div class="container">
 
-        <div class="container">
+        <form class="form-signin" id="user_form" method="post" action="/bookmarks/register/"
+        enctype="multipart/form-data">
 
-            <form class="form-signin" id="user_form" method="post" action="/bookmarks/register/"
-                enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ user_form.as_p }}
+        {{ profile_form.as_p }}
 
-                {% csrf_token %}
-                {{ user_form.as_p }}
-                {{ profile_form.as_p }}
-
-                <button class="btn btn-large btn-primary" type="submit" >Register</button>
-            </form>
-        </div>
-        {% endif %}
+        <button class="btn btn-large btn-primary" type="submit" >Register</button>
+    </form>
+</div>
+</div>
+{% endif %}
 
 {% endblock %}

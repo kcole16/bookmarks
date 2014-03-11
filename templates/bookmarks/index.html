@@ -3,65 +3,55 @@
 {% block title %}{{ list_name }}{% endblock %}
 
 {% block body_block %}
-        <h1>Lists</h1>
-        <style>
-        tr, table
-        {
-            border:1px solid black;
-        } 
-        {
-            background-color:orange;
-            border-color:white;
-            outline-color: white;
-        
-        }
-        </style>
 
-        {% if lists %}
-                <h3>Name</h3>
-                {% for list in lists %}
-                <div class="panel-group" id="accordion">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h4 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ list.name}}">
-                                    {{ list.name }}
-                                </a>
-                            </h4>
-                        </div>
-                        <div id="collapse{{ list.name }}" class="panel-collapse collapse in">
-                            <div class="panel-body">
-                            {% if links %}
-                                <table style="width:300px">
-                                <tr>
-                                    <th>Name</th>
-                                </tr>
-                                {% for link in links %}
-                                <tr>
-                                     <td style="border:1px solid black"><a href="{{ link.pk }}">{{ link.name }}</a></td>
-                                     {% if user.is_authenticated %}
-                                     <td><a href='/bookmarks/delete_link/{{ link.pk }}/'> Delete</a></td>
-                                     {% endif %}
-                                </tr>
 
-                                {% endfor %}
-                                <tr>
-                                    <td><a href="/bookmarks/list/{{ list.name }}/add_link/">Add a New Link</a></td>
-                                </tr>
-                                </table>
-                            {% else %}
-                            <strong>No links currently in list.</strong>
-                            {% endif %}
-                            </div>
-                        </div>
-                </div>
 
-       
+{% if lists %}
+<div class="panel-group" id="accordion"  style="margin-right:100px;">  <legend style="font-size:35px;font-family:arial;margin-left:40px;"> Lists </legend>
+    {% for list in lists %}
+    <div class="panel panel-default"  style="margin-left:40px;">
+        <div class="panel-heading" style="background-color:white;" >
+            <h4 class="panel-title" style="background-color:white;font-size:regular;font-family:arial;" >
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{ list.name}}">
+                    {{ list.name }}
+                </a>
+            </h4>
+        </div>
+        <div id="collapse{{ list.name }}" class="panel-collapse collapse">
+            <div class="panel-body">
+                {% if links %}
+                <table style="width:200px">
+                    <tr>
+                        <th>Name</th>
+                    </tr>
+                    {% for link in links %}
+                    <tr>
+                       <td style="border:1px solid black"><a href="{{ link.pk }}">{{ link.name }}</a></td>
+                       {% if user.is_authenticated %}
+                       <td><a href='/bookmarks/delete_link/{{ link.pk }}/'> Delete</a></td>
+                       {% endif %}
+                   </tr>
 
-                {% endfor %}
+                   {% endfor %}
+                   <tr>
+                    <td><a href="/bookmarks/list/{{ list.name }}/add_link/">Add a New Link</a></td>
+                </tr>
+            </table>
+            {% else %}
+            <strong>No links currently in list.</strong>
+            {% endif %}
+        </div>
+    </div>
+</div>
 
-        {% else %}
-            <strong>There are no lists present.</strong>
-        {% endif %}
+
+
+
+
+{% endfor %}
+
+{% else %}
+<strong>There are no lists present.</strong>
+{% endif %}
 
 {% endblock %}
