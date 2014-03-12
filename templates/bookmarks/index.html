@@ -20,16 +20,18 @@
         <div id="collapse{{ list.name }}" class="panel-collapse collapse">
             <div class="panel-body">
                 {% if links %}
-                <table style="width:200px">
+                <table class = "table table-condensed">
                     <tr>
-                        <th>Name</th>
+                        <th>Link</th>
                     </tr>
                     {% for link in links %}
+                    {% if link.lists_id == list.id %}
                     <tr>
-                       <td style="border:1px solid black"><a href="{{ link.pk }}">{{ link.name }}</a></td>
+                       <td><a href="{{ link.link }}">{{ link.name }}</a></td>
                        {% if user.is_authenticated %}
                        <td><a href='/bookmarks/delete_link/{{ link.pk }}/'> Delete</a></td>
                        {% endif %}
+                    {% endif %}
                    </tr>
 
                    {% endfor %}

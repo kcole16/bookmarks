@@ -12,6 +12,5 @@ urlpatterns = patterns('',
 	url(r'^delete_link/(?P<link_id>\w+)/$', views.delete_link, name='delete_link'),
 	url(r'^restricted/', views.restricted, name='restricted'),
 	url(r'^logout/$', views.user_logout, name='logout'),
-	url(r'^delete_list/(?P<list_id>\w+)/$', views.delete_list, name='delete_list'),
 	)
 

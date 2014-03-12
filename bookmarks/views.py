@@ -30,13 +30,10 @@ def index(request):
     context = RequestContext(request)
     list_order = List.objects.order_by('name')
     context_dict = {'lists': list_order}
-    
+    links = Link.objects.order_by('lists')
+
     for lists in list_order:
-      #  lists.url = lists.name
-        name = lists.name
-    
-    list_to_get = List.objects.get(name=name)
-    links = Link.objects.filter(lists=list_to_get)
+        lists.url = lists.name
 
     context_dict['links'] = links
 
@@ -89,7 +86,7 @@ def add_link(request, list_name_url):
                 return render_to_response('bookmarks/add_link.html', {}, context)
 
             link.save()
-            return list(request, list_name_url)
+            return HttpResponseRedirect('/bookmarks/')
         else:
             print form.errors
     else:
@@ -149,12 +146,7 @@ def delete_link(request, link_id):
     link_to_delete.delete()
     return HttpResponseRedirect('/bookmarks/')
 
-@login_required
-def delete_list(request, list_id):
-    list_to_delete = get_object_or_404(List, id=list_id)
-    context = RequestContext(request)
-    list_to_delete.delete()
-    return HttpResponseRedirect('/bookmarks')
+
 
 
 
